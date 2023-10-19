@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  php-alpine-base-project:
+    container_name: php-alpine-base-project
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        USER_ID: 1000
+    networks:
+      - default
+    volumes:
+      - ./src:/var/www/html:delegated
