@@ -6,8 +6,8 @@ FROM php:${PHP_VERSION}-fpm-alpine AS ApiPlatform2Screencasts
 ARG USER_ID
 
 RUN \
-  #apk add --no-cache bash postgresql-dev && \
-  #docker-php-ext-install pdo pdo_pgsql && \
+  apk add --no-cache bash postgresql-dev && \
+  docker-php-ext-install pdo pdo_pgsql && \
   apk add --no-cache --virtual .build-deps $PHPIZE_DEPS &&\
   pecl install xdebug-2.9.8 &&\
   docker-php-ext-enable xdebug &&\

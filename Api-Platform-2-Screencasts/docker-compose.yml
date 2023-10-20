@@ -1,5 +1,5 @@
 version: '3.3'
-
+name: screencasts
 services:
   api-platform-2-screencasts:
     container_name: screencasts-api-platform
@@ -12,7 +12,7 @@ services:
     networks:
       - default
     volumes:
-      - ./src:/var/www/html:delegated
+      - ./app:/var/www/html:delegated
       
   api-platform-2-screencasts-nginx:
     container_name: screencasts-nginx
@@ -29,7 +29,7 @@ services:
       - default
       - traefik
     volumes:
-      - ./src/public:/var/www/html/public:delegated
+      - ./app/public:/var/www/html/public:delegated
           
   api-platform-2-screencasts-traefik:
     container_name: screencasts-traefik

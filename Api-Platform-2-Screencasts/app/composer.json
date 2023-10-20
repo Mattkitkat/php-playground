@@ -57,11 +57,16 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
+        "doctrine-bugfix": [
+            "cp -f dist/RunSqlDoctrineCommand.php vendor/doctrine/doctrine-bundle/Command/Proxy/RunSqlDoctrineCommand.php"
+        ],
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@doctrine-bugfix"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@doctrine-bugfix"
         ]
     },
     "conflict": {
