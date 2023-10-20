@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  symfony-44-skeleton:
+    container_name: Symfony44Skeleton
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        USER_ID: 1000
+    networks:
+      - default
+    volumes:
+      - ./src:/var/www/html:delegated

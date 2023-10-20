@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  symfony-42-skeleton:
+    container_name: Symfony42Skeleton
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        USER_ID: 1000
+    networks:
+      - default
+    volumes:
+      - ./src:/var/www/html:delegated

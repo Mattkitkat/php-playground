@@ -1,0 +1,54 @@
+version: '3.3'
+
+services:
+  api-platform-2-screencasts:
+    container_name: screencasts-api-platform
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: ApiPlatform2Screencasts
+      args:
+        USER_ID: 1000
+    networks:
+      - default
+    volumes:
+      - ./src:/var/www/html:delegated
+      
+  api-platform-2-screencasts-nginx:
+    container_name: screencasts-nginx
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: ApiPlatform2ScreencastsNginx
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: Host:screencasts-api-platform.localhost
+      traefik.docker.network: traefik
+      traefik.port: 80
+    networks:
+      - default
+      - traefik
+    volumes:
+      - ./src/public:/var/www/html/public:delegated
+          
+  api-platform-2-screencasts-traefik:
+    container_name: screencasts-traefik
+    image: traefik:1.7-alpine
+    restart: always
+    command:
+    - --api=true
+    - --api.dashboard=true
+    ports:
+      - 80:80
+      - 443:443
+      - 9191:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
+    networks:
+      - default
+      - traefik
+      
+networks:
+    traefik:
+        external: true
