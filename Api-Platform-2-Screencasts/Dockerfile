@@ -17,11 +17,10 @@ RUN \
 COPY xdebug.ini $PHP_INI_DIR/conf.d
 COPY www.conf $PHP_INI_DIR/../php-fpm.d/www.conf
 
-COPY --from=composer:1.10.22 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.6.5 /usr/bin/composer /usr/bin/composer
 
 RUN deluser --remove-home www-data && \
-  adduser -D -u $USER_ID -g www-data www-data && \
-  install -d -m 0755 -o www-data -g www-data /home/www-data
+  adduser -D -u $USER_ID -g www-data www-data -H
 
 USER www-data
 

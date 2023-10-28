@@ -12,7 +12,7 @@ services:
     networks:
       - default
     volumes:
-      - ./app:/var/www/html:delegated
+      - ./app:/var/www/html:default
       
   api-platform-2-screencasts-nginx:
     container_name: screencasts-nginx

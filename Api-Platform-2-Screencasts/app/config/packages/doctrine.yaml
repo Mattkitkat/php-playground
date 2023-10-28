@@ -6,7 +6,7 @@ doctrine:
         password: '%env(resolve:PG_DATABASE_PASSWORD)%'
         dbname: '%env(resolve:PG_DATABASE_NAME)%'
         sslmode: '%env(resolve:PG_DATABASE_SSL_MODE)%'
-        server_version: '%env(resolve:PG_DATABASE_SERVER_VERSION)%'
+        #server_version: '%env(resolve:PG_DATABASE_SERVER_VERSION)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         auto_mapping: true
