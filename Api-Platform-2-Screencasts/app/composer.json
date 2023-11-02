@@ -27,6 +27,7 @@
         "symfony/yaml": "4.2.*"
     },
     "require-dev": {
+        "symfony/web-profiler-bundle": "^4.2"
     },
     "config": {
         "preferred-install": {
